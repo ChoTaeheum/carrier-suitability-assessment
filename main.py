@@ -116,7 +116,7 @@ def main():
 
     ba_pred = BA_runner.run(carrier_fp, sequence_embd, len(carrier_fp))
     ba_pred = np.round(np.array(ba_pred.detach()), 4)
-    ba_pred = np.where(ba_pred < 0, 0, ba_pred)
+    ba_pred = np.where(ba_pred < 0, 0.0001, ba_pred)
 
 
     ######################
