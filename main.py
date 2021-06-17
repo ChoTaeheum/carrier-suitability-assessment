@@ -150,7 +150,8 @@ def main():
         WHERE abstract like '%{name}%'
         """
                                   ).iloc[0,0]
-            
+        
+        total_score = (20 * block_score) + (10 * interaction_type) + (-math.log(ic50)) + (-math.log(ec50))
             
         suitability.query_db(f"""
         INSERT INTO pro_carrier_suitability_assessment.result(req_id, 
@@ -163,7 +164,8 @@ def main():
                                                               interaction_type, 
                                                               ic50, ec50,
                                                               n_ref_da,
-                                                              n_ref_ae)
+                                                              n_ref_ae,
+                                                              total_score)
         VALUES ('{req_id}', 
                  {idx}, 
                  '{Drugbank_ID}', 
@@ -175,7 +177,8 @@ def main():
                  {round(ic50, 3)}, 
                  {round(ec50, 3)},
                  0,
-                 {n_ref_ae});    
+                 {n_ref_ae},
+                 {total_score});    
         """)
         
     # 부작용 논문 검색후 DB 저장        
