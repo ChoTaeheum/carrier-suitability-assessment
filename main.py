@@ -33,6 +33,11 @@ def main():
     sequence = request.loc[0, 'sequence']
     weight = request.loc[0, 'weight']
 
+    weight_split = weight.split('|')
+    ba_wt = weight_split[0]
+    ae_wt = weight_split[1]
+    ddi_wt = weight_split[2]
+
     ##################
     # 타겟 약물이 친수성인지 소수성인지 확인
     polarity = Polarity(smiles)
