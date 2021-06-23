@@ -15,9 +15,10 @@ import DDI_runner
 import BA_runner
 
 
-req_id = sys.argv[1]
+
 
 def main():
+    req_id = sys.argv[1]
     run = Run(req_id)
     run.run()
 
